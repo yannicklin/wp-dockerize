@@ -1,0 +1,21 @@
+.component-star-rating {
+  line-height: 1em;
+
+  .star-rating {
+
+    &-base {
+      color: #CFD1D4
+    }
+    &-overlay {
+      color: #FFBF00;
+      width: calc((var(--rating) / 5) * 100%);
+    }
+
+    svg {
+      padding: 3px;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+}

@@ -1,0 +1,9 @@
+.DS_Store
+
+# Skip Local Debugging Tools
+/.idea
+debug.log
+.ddev/
+.vscode/
+node_modules
+.env

@@ -1,0 +1,1 @@
+# curl -sSL https://github.com/yannicklin-ctm/wp-revisions-cli/archive/refs/tags/v0.2.3.zip -o wp-revisions.zip

@@ -1,0 +1,3 @@
+<x-block-theme :acf="$block_theme ?? []" :name="$block_object->name" class="block block-{view_name}" data-autoload-block="{{ $block_class }}" id="{{ $block_object->getBlockHtmlId() }}">
+  {view_name} block!
+</x-block-theme>

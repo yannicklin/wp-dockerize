@@ -1,0 +1,15 @@
+section.component-accordion-item.accordion-item {
+    background: transparent;
+    border-bottom: 1px solid $white;
+
+    .accordion-header {
+      .accordion-button {
+        @extend h5;
+        margin-bottom: 0 !important;
+      }
+    }
+
+    .accordion-button:not(:focus-visible) {
+      box-shadow: none;
+    }
+}

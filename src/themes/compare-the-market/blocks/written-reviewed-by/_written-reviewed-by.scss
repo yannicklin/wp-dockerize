@@ -1,0 +1,16 @@
+section.block-written-reviewed-by {
+
+    .slim_verion {
+        .date-updated-element::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 100%;
+            width: 4px;
+            background-color: #B4D4F8;
+            border-radius: 2px;
+        }
+    }
+}

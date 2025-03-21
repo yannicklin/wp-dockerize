@@ -1,0 +1,8 @@
+.deployignore
+.git
+.github
+auth.json
+node_modules
+output.log
+DOCKER_ENV
+docker_tag

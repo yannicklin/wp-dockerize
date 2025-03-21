@@ -1,0 +1,17 @@
+section.block-hybrid-accordion {
+  .ctm-accordion-content {
+    transition: max-height 0.3s ease-in-out;
+    &.collapsed {
+      max-height: 256px !important;
+      overflow: hidden;
+      @include media-breakpoint-down(md) {
+        max-height: 360px !important;
+      }
+    }
+  }
+
+  .quote-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}

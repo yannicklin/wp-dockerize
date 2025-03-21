@@ -1,0 +1,9 @@
+.app-banner-text {
+  // Max width for the "Download the Simples app" text so that the line breaks
+  max-width: 140px;
+}
+
+.app-button-container {
+  // 135px (google play) + 8px (padding) + 120px (app store)
+  max-width: 263px;
+}

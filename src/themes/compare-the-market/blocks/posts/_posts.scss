@@ -1,0 +1,17 @@
+.side-navigation-blocks {
+  section.block-posts section.component-title-block {
+    text-align: left !important;
+    .h2 {
+      font-weight: 800 !important;
+    }
+
+    .body-l {
+      @extend .body-m;
+    }
+  }
+}
+
+
+section.block-posts {
+
+}

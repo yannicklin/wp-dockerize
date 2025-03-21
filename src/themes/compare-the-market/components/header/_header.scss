@@ -1,0 +1,399 @@
+// Admin Bar
+// -------------------------
+body.admin-bar header.header-fixed,  body.admin-bar .offcanvas-end{
+  top: var(--wp-admin--admin-bar--height);
+}
+
+@include media-breakpoint-up(lg) {
+  .navbar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $black;
+    visibility: hidden;
+    z-index: -1;
+    transition: all .15s linear;
+  }
+
+  body.nav-open {
+    .navbar-overlay {
+      opacity: .3;
+      z-index: 0;
+      visibility: visible;
+    }
+  }
+}
+
+#wpadminbar {
+  position: fixed !important;
+}
+
+// Header
+// -----------------------------------------------------
+
+header.banner {
+  width: 100%;
+  //box-shadow: 0 6px 8px rgb(0 0 0 / 8%);
+  z-index: 1000;
+
+  &.header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+      // Main offset for fixed header
+      + main {
+        transition: padding-top 300ms;
+
+        @each $size, $attributes in $header-heights {
+          @include media-breakpoint-up($size) {
+            padding-top: map-get($attributes, header-main-height) + map-get($attributes, header-top-height);
+
+            .page-template-landing & {
+              margin-top: -#{map-get($attributes, header-top-height)};
+            }
+
+            .compact-header & {
+              @if $hide-compact-top-bar == true {
+                padding-top: map-get($attributes, header-main-height-compact);
+              } @else {
+                padding-top: map-get($attributes, header-main-height-compact) + map-get($attributes, header-top-height-compact);
+              }
+            }
+
+          }
+        }
+      }
+
+    }
+
+
+
+  // Header Main
+  // -------------------------
+  .header-main {
+    background: $white;
+    position: relative;
+    z-index: 2;
+    transition: height 300ms;
+
+    @include media-breakpoint-up(lg) {
+      padding: 0;
+    }
+
+    // Sizes
+    @each $size, $attributes in $header-heights {
+      @include media-breakpoint-up($size) {
+        $height: map-get($attributes, header-main-height);
+        $compact-height: map-get($attributes, header-main-height-compact);
+
+        @if $height == 0 {
+          display: none;
+        } @else {
+          display: block;
+          height: $height;
+        }
+
+        .compact-header & {
+          @if $compact-height == 0 {
+            display: none;
+          } @else {
+            display: block;
+            height: $compact-height;
+          }
+        }
+
+      }
+    }
+
+    .site-logo {
+      img {
+        max-height: 40px;
+        transition: max-height 300ms;
+
+        .compact-header & {
+          max-height: 40px;
+        }
+      }
+    }
+
+    &.theme-light {
+      background-color: $light-bg;
+      border-bottom:  1px solid $greyscale-100;
+    }
+
+    &.theme-dark {
+      background-color: $dark-bg;
+      color: $white;
+    }
+
+  }
+
+
+  // Header CTA
+  // -------------------------
+  .header-cta {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    top: 0;
+    z-index: 2;
+    transform: translateY(-100%);
+    transition: transform 400ms;
+
+    .show-cta & {
+      transform: translateY(0%);
+      pointer-events: auto;
+    }
+
+
+    // Sizes
+    @each $size, $attributes in $header-heights {
+      @include media-breakpoint-up($size) {
+        $height: map-get($attributes, header-main-height);
+        $compact-height: map-get($attributes, header-main-height-compact);
+
+        @if $height == 0 {
+          display: none;
+        } @else {
+          display: block;
+          height: $height;
+        }
+
+        .compact-header & {
+          @if $compact-height == 0 {
+            display: none;
+          } @else {
+            display: block;
+            height: $compact-height;
+          }
+        }
+
+      }
+    }
+    .site-logo {
+      img {
+        max-height: 40px;
+        transition: max-height 300ms;
+
+        .compact-header & {
+          max-height: 40px;
+        }
+      }
+
+      @media only screen and (max-width: 320px) {
+        display: none !important;
+      }
+
+    }
+    &.theme-light {
+      background-color: $light-bg;
+    }
+
+    &.theme-dark {
+      background-color: $dark-bg;
+      color: $white;
+
+      .btn-text {
+        color: $white;
+        background: transparent;
+      }
+    }
+  }
+
+  // Header Top
+  // -------------------------
+  .header-top {
+    background: $white;
+    transition: height 300ms, margin-top 300ms;
+
+    // Sizes
+    @each $size, $attributes in $header-heights {
+      @include media-breakpoint-up($size) {
+        $height: map-get($attributes, header-top-height);
+        $compact-height: map-get($attributes, header-top-height-compact);
+        @if $height == 0 {
+          display: none;
+        } @else {
+          display: block;
+          height: $height;
+        }
+        body.compact-header & {
+
+          @if $hide-compact-top-bar {
+            margin-top: -$compact-height;
+          }
+          @if $compact-height == 0 {
+            display: none;
+          } @else {
+            display: block;
+            height: $compact-height;
+          }
+        }
+      }
+    }
+
+    &-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      list-style: none;
+      margin-bottom: 0;
+      //padding: 22px 0;
+      @include media-breakpoint-down('lg') {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      li {
+        &:last-child {
+          a {
+            padding-right: 0;
+          }
+        }
+      }
+
+      li {
+
+        a {
+          padding: 0 16px;
+          font-size: 16px;
+          line-height: $lh-b-sm;
+          color: $blue-500;
+          text-decoration: none;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+
+          .menu-icon {
+            font-size: $fs-18;
+
+            svg {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+  // NavBar
+  // -------------------------
+
+  @include media-breakpoint-up(lg) {
+    .navbar-wrapper {
+      width: 100%;
+      z-index: 1;
+      transition: all 200ms;
+      background: linear-gradient(180deg, $blue-100 79px, $white 80px);
+      position: absolute;
+      bottom: 0;
+      transform: translateY(100%);
+    }
+    .navbar-wrapper[aria-hidden="true"] {
+      transform: translateY(0);
+    }
+  }
+
+
+
+  // Desktop Menu Toggle
+  .desktop-menu-toggle {
+    background: none;
+    color: currentColor;
+    border: none;
+
+    .component-icon {
+      transition: transform .15s linear;
+    }
+
+    &[aria-expanded="false"] .component-icon {
+      transform: scaleY(-1);
+    }
+  }
+
+
+  // Mobile Menu Toggle
+  .mobile-menu-toggle {
+    display: block;
+    height: 60px;
+    width: 40px;
+    z-index: 830;
+    position: relative;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+    color: currentColor;
+    outline: none;
+    background: none;
+    border: none;
+
+    span,
+    span::before,
+    span::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      margin-left: -11px;
+      height: 2px;
+      width: 22px;
+      background: currentColor;
+      transition: all 200ms ease-in;
+    }
+
+    span {
+      top: 50%;
+      margin-top: -1px;
+
+      &::before {
+        top: -7px;
+      }
+
+      &::after {
+        bottom: -7px;
+      }
+    }
+
+    &.active {
+      //transform: rotate(90deg);
+
+      // Hamburger lines
+      span {
+        background: transparent;
+
+        &::before {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        &::after {
+          transform: rotate(-45deg) translate(5px, -5px);
+        }
+      }
+    }
+  }
+}
+
+.desktop-menu.offcanvas {
+  border: 0;
+
+  @each $size, $attributes in $header-heights {
+    @if $size == lg or $size == xl {
+      @include media-breakpoint-up($size) {
+        margin-top: 0;
+      }
+    } @else {
+      @include media-breakpoint-up($size) {
+        margin-top: calc(#{map-get($attributes, header-main-height) + map-get($attributes, header-top-height)} - 1px);
+      }
+    }
+  }
+
+
+
+}

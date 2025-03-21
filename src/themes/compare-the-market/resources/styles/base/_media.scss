@@ -1,0 +1,54 @@
+.media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  &-square {
+    padding-bottom: 100%;
+  }
+
+  &-portrait {
+    padding-bottom: 125%;
+  }
+
+  &-landscape {
+    padding-bottom: 66.6%;
+  }
+
+  &-cropped {
+    padding-bottom: 56%;
+  }
+
+  &-16-9 {
+    padding-bottom: 56.25%;
+  }
+
+  &-circle {
+    padding-bottom: 100%;
+    border-radius: 50%;
+  }
+
+  &-full {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.media > img,
+.media > video,
+.media > iframe {
+  display: block;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.media > img {
+  object-fit: cover;
+  object-position: center center;
+}
+

@@ -1,0 +1,28 @@
+section.component-logos {
+  // Hide the logos until they are loaded/randomized
+  &:not([data-loaded="true"]) {
+    img {
+      opacity: 0;
+    }
+  }
+
+  .logo {
+    height: 88px;
+
+    img {
+      width: auto;
+      height: auto;
+      max-height: 100%;
+    }
+  }
+
+  &[aria-expanded="true"] {
+    .fa-chevron-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  .disclaimer-md a {
+    color: inherit;
+  }
+}

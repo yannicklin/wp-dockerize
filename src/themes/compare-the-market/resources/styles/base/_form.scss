@@ -1,0 +1,62 @@
+input:not([type="submit"]),
+textarea,
+select {
+  background-color: $input-bg;
+  display: block;
+  border: none;
+  color: $greyscale-300;
+  padding: 16px 20px;
+  width: 100%;
+  border-radius: $input-border-radius;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+}
+
+@each $theme,
+$value in $form-themes {
+  .form-#{$theme} {
+
+    input:not([type="submit"]),
+    textarea,
+    select {
+      background-color: map-get($value, "background");
+      border-color: map-get($value, "border-color");
+      color: map-get($value, "color");
+    }
+  }
+}
+
+.search-form {
+  position: relative;
+  background-color: $input-bg;
+  display: flex;
+  justify-content: space-between;
+  color: $input-color;
+  width: 100%;
+  border-radius: $input-border-radius;
+
+  label {
+    width: 100%;
+  }
+
+  input[type="search"] {
+    width: 100%;
+    padding-right: 50px;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px;
+    border: none;
+    background: none;
+  }
+}

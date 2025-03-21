@@ -1,0 +1,229 @@
+section.block-side-navigation {
+  background: transparent;
+  padding-top: 80px !important;
+  padding-bottom: 80px !important;
+
+  .block-content {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  
+  @include media-breakpoint-down(md) {
+    padding-top: 32px !important;
+
+    h2 {
+      margin-bottom: 16px !important;
+    }
+
+    .block-content {
+      padding-bottom: 40px !important;
+      padding-top: 40px !important;
+    }
+  }
+
+  // Remove top padding from first block so
+  // that the top of the block aligns with
+  // the top of the side navigation
+  .block:first-of-type {
+    padding-top: 0 !important;
+  }
+
+  // Fix nested containers
+  .container .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  // Header Offset for section anchors
+  section.block {
+    background: transparent;
+  }
+
+
+  // Side Navigation Header Offset
+  .side-navigation-items-container {
+    position: sticky;
+    @each $size, $attributes in $header-heights {
+      @include media-breakpoint-up($size) {
+        top: map-get($attributes, header-main-height) + map-get($attributes, header-top-height);
+
+        .admin-bar & {
+          top: calc(#{map-get($attributes, header-main-height) + map-get($attributes, header-top-height)} + var(--wp-admin--admin-bar--height));
+        }
+
+        .compact-header & {
+          @if $hide-compact-top-bar == true {
+            top: map-get($attributes, header-main-height-compact);
+          } @else {
+            top: map-get($attributes, header-main-height-compact) + map-get($attributes, header-top-height-compact);
+          }
+        }
+
+        .admin-bar.compact-header & {
+          @if $hide-compact-top-bar == true {
+            top: calc(#{map-get($attributes, header-main-height-compact)} + var(--wp-admin--admin-bar--height));
+          } @else {
+            top: calc(#{map-get($attributes, header-main-height-compact) + map-get($attributes, header-top-height-compact)} + var(--wp-admin--admin-bar--height));
+          }
+        }
+
+      }
+    }
+  }
+
+
+  // Side Navigation Progress Bar
+  .side-navigation-items {
+    position: relative;
+
+    @include media-breakpoint-down(lg) {
+      &:not(.overflow) {
+        border-bottom: 1px solid $blue-300;
+      }
+    }
+
+    // Progess Bar
+    @include media-breakpoint-up(lg) {
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        height: calc(100% - 20px);
+        width: 6px;
+        background: $blue-200;
+        border-radius: 4px;
+      }
+    }
+
+    a {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      font-weight: 400;
+
+      @include media-breakpoint-up(lg) {
+        border-bottom: 1px solid $blue-300;
+
+        &::before {
+          content: "";
+          display: block;
+          width: 6px;
+          height: calc(100% + 4px);
+          top: -4px;
+          position: absolute;
+          border-radius: 4px;
+          left: -32px;
+          transition: background-color 0.15s;
+        }
+
+        &:first-child::before {
+          top: 0;
+        }
+
+        &.active {
+          font-weight: 800;
+
+          &::before {
+            background: $blue-400;
+          }
+        }
+      }
+    }
+
+
+    + .show-more {
+      display: none;
+      width: 100%;
+      border: 0;
+      background: none;
+      .component-icon {
+        font-size: 20px;
+      }
+      &[aria-expanded="false"] .component-icon {
+        transform: scaleY(-1);
+      }
+    }
+
+    @include media-breakpoint-down(lg){
+      &.overflow {
+        + .show-more {
+          display: flex;
+          border-bottom: 1px solid $blue-300;
+        }
+
+        &:not(.open) {
+          max-height: calc(var(--max-height) * 1px);
+          overflow: hidden;
+
+          &:after {
+            content: '';
+            display: block;
+            height: 50px;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgb(252,252,251) 100%);
+            position: absolute;
+            bottom: 0;
+          }
+        }
+      }
+
+      &:not(.overflow) {
+        + .show-more {
+          display: none;
+        }
+      }
+
+    }
+
+  }
+
+  .side-navigation-blocks.has-divider {
+    > section[data-autoload-component="BlockTheme"]:not(:last-child) {
+      border-bottom: 1px solid $blue-300;
+    }
+  }
+
+  &.theme-blue, &.theme-dark-blue {
+   .side-navigation-items a {
+     color: white;
+
+     &.active {
+       &::before {
+         background: $blue-600;
+       }
+     }
+
+   }
+  }
+
+  &.theme-light-blue {
+    .side-navigation-items {
+      &::before {
+        background: white;
+      }
+    }
+  }
+
+  &.theme-blue {
+      .side-navigation-items a {
+        &.active {
+          &::before {
+            background: $blue-500;
+          }
+        }
+
+      }
+  }
+  &.theme-dark-blue {
+    .side-navigation-items a {
+      &.active {
+        &::before {
+          background: $blue-400;
+        }
+      }
+
+    }
+  }
+
+}

@@ -1,0 +1,662 @@
+{
+    "key": "group_657a43807d001",
+    "title": "Block - Advanced Content",
+    "fields": [
+        {
+            "key": "field_657a437fb8ca2",
+            "label": "Advanced Content",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_657a438fb8ca3",
+            "label": "Instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_657a43e0b8ca4",
+            "label": "Instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_657a46e9b8cb2",
+            "label": "Rows",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_657a443fb8ca5",
+            "label": "Rows",
+            "name": "rows",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_657a4451b8ca6",
+                    "label": "Row Width",
+                    "name": "row_width",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "100": "100%",
+                        "75": "75%",
+                        "50": "50%",
+                        "25": "25%"
+                    },
+                    "default_value": 100,
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_657a443fb8ca5"
+                },
+                {
+                    "key": "field_6594b708277fa",
+                    "label": "Row Gap",
+                    "name": "row_gap",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "0": "0",
+                        "15": "15",
+                        "30": "30",
+                        "40": "40",
+                        "60": "60"
+                    },
+                    "default_value": 0,
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_657a443fb8ca5"
+                },
+                {
+                    "key": "field_657a4492b8ca7",
+                    "label": "Vertical Alignment",
+                    "name": "vertical_alignment",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "start": "Top",
+                        "center": "Center",
+                        "end": "Bottom",
+                        "stretch": "Stretch"
+                    },
+                    "default_value": "top",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_657a443fb8ca5"
+                },
+                {
+                    "key": "field_657a44bdb8ca8",
+                    "label": "Horizontal Alignment",
+                    "name": "horizontal_alignment",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "60",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "start": "Left to right",
+                        "end": "Right to left",
+                        "center": "Centre",
+                        "between": "Between",
+                        "around": "Around"
+                    },
+                    "default_value": "start",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "layout": "horizontal",
+                    "parent_repeater": "field_657a443fb8ca5"
+                },
+                {
+                    "key": "field_657a4535b8ca9",
+                    "label": "Columns",
+                    "name": "columns",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "field_657a4540b8caa",
+                    "button_label": "Add column",
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_657a443fb8ca5",
+                    "sub_fields": [
+                        {
+                            "key": "field_657bdfcc030e5",
+                            "label": "Image",
+                            "name": "image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "preview_size": "medium",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a4540b8caa",
+                            "label": "Content",
+                            "name": "content",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_6594b8bc1f6a9",
+                            "label": "Column Settings",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "new_lines": "wpautop",
+                            "esc_html": 0,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a454ab8cab",
+                            "label": "Column Width",
+                            "name": "column_width",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": "1 column",
+                                "2": "2 column",
+                                "3": "3 column",
+                                "4": "4 column",
+                                "5": "5 column",
+                                "6": "6 column",
+                                "7": "7 column",
+                                "8": "8 column",
+                                "9": "9 column",
+                                "10": "10 column",
+                                "11": "11 column",
+                                "12": "12 column"
+                            },
+                            "default_value": 6,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a45c7b8cae",
+                            "label": "Padding Style",
+                            "name": "padding_style",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "all": "All",
+                                "top-bottom": "Top and Bottom",
+                                "left-right": "Left and Right",
+                                "top": "Top",
+                                "bottom": "Bottom",
+                                "left": "Left",
+                                "right": "Right",
+                                "none": "None"
+                            },
+                            "default_value": "all",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a46aab8cb0",
+                            "label": "Padding Amount",
+                            "name": "padding_amount",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "0": "0",
+                                "16": "16",
+                                "24": "24",
+                                "32": "32",
+                                "80": "80",
+                                "120": "120"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_6580d82450ac6",
+                            "label": "Padding Style (Mobile)",
+                            "name": "padding_style_mobile",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "40",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "all": "All",
+                                "top-bottom": "Top and Bottom",
+                                "left-right": "Left and Right",
+                                "top": "Top",
+                                "bottom": "Bottom",
+                                "left": "Left",
+                                "right": "Right",
+                                "none": "None"
+                            },
+                            "default_value": "all",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 1,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_6580d6744138b",
+                            "label": "Padding Amount (Mobile)",
+                            "name": "padding_amount_mobile",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "60",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "0": "0",
+                                "16": "16",
+                                "24": "24",
+                                "32": "32",
+                                "80": "80",
+                                "120": "120"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_6594b8a91f6a8",
+                            "label": "Card Settings",
+                            "name": "",
+                            "aria-label": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "new_lines": "wpautop",
+                            "esc_html": 0,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_6594b7ca277fb",
+                            "label": "Card Padding",
+                            "name": "card_padding",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a5da9a166f",
+                            "label": "Border Radius",
+                            "name": "border_radius",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui_on_text": "Yes",
+                            "ui_off_text": "No",
+                            "ui": 1,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a459cb8cac",
+                            "label": "Add border",
+                            "name": "add_border",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui_on_text": "Yes",
+                            "ui_off_text": "No",
+                            "ui": 1,
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657a45a9b8cad",
+                            "label": "Border Style",
+                            "name": "border_style",
+                            "aria-label": "",
+                            "type": "button_group",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_657a459cb8cac",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "25",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "flat": "Flat",
+                                "branded": "Branded"
+                            },
+                            "default_value": "",
+                            "return_format": "value",
+                            "allow_null": 0,
+                            "layout": "horizontal",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        },
+                        {
+                            "key": "field_657bdd140a0f6",
+                            "label": "Column Colour",
+                            "name": "column_colour",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "transparent": "None",
+                                "alabaster-100": "White",
+                                "alabaster-200": "Cream White",
+                                "alabaster-300": "Cream",
+                                "blue-200": "Light Blue",
+                                "blue-400": "Blue",
+                                "blue-500": "Dark Blue",
+                                "yellow-100": "Subtle Yellow",
+                                "crimson-100": "Subtle Red",
+                                "apple-100": "Subtle Green"
+                            },
+                            "default_value": "alabaster-100",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_657a4535b8ca9"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "field_657a46f4b8cb3",
+            "label": "Block Theme",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_657a4703b8cb4",
+            "label": "Block Theme",
+            "name": "block_theme",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_63057ae35b261"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/advanced-content"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1707271150
+}

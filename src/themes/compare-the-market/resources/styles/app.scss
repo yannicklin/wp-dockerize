@@ -1,0 +1,68 @@
+// Vendor
+@use 'swiper/scss' with ($themeColor: #003BE0);
+@import "vendor/swiper";
+
+// Boostrap
+@import "bootstrap/scss/functions";
+
+// Bootstrap Variable overrides
+@import "base/variables";
+
+// Boostrap
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+
+// Boostrap Components
+//@import "bootstrap/scss/tables";
+//@import "bootstrap/scss/forms";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/nav";
+//@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+//@import "bootstrap/scss/pagination";
+
+// Boostrap Helpers
+@import "bootstrap/scss/helpers";
+
+// Boostrap Utilities
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+
+// Wordpress Core
+@import "wp-core/posts-pagination";
+@import "wp-core/wp-block-image";
+
+// Theme
+@import "base/form";
+@import "base/borders";
+@import "base/hr";
+@import "base/media";
+@import "base/rte";
+@import "base/themes";
+@import "base/typography";
+
+@import '../../components/**/*.scss';
+@import '../../blocks/**/*.scss';
+@import '../../post-types/**/*.scss';
+@import "plugins/*.scss";
+
+
+// Prevents scrollbar from jumping around when loading
+html {
+  scrollbar-gutter: stable;
+}
+
+// List Styles (used in Content)
+ol:not(.menu, .sub-menu, .navbar-nav), ul:not(.menu, .sub-menu, .navbar-nav) {
+  padding-left: 1.3em;
+}

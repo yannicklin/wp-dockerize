@@ -1,0 +1,234 @@
+@import '_variables';
+
+html {
+  @each $size, $attributes in $header-heights {
+    scroll-padding-top: calc(#{map-get($attributes, header-main-height) + map-get($attributes, header-top-height)} - 1px);
+    &:has(body.admin-bar) {
+      scroll-padding-top: calc(#{map-get($attributes, header-main-height) + map-get($attributes, header-top-height)} - 1px + var(--wp-admin--admin-bar--height));
+    }
+  }
+}
+
+body, h1, h2, h3, h4, h5, h6, blockquote, .lead, .display-1, .display-2, .display-3, .body-xxl, .body-xl, .body-l, .body-m, .body-s, .body-xs, .disclaimer-sm {
+  font-weight: $body-font-weight;
+}
+
+// Headings
+h1, .h1 {
+  font-size: $fs-34;
+  line-height: $lh-h-sm;
+  @include media-breakpoint-up(xl) {
+    font-size: $fs-56;
+  }
+}
+
+h2, .h2 {
+  font-size: $fs-28;
+  line-height: $lh-h-lg;
+
+  @include media-breakpoint-up(md) {
+    font-size: $fs-32;
+  }
+}
+
+h3, .h3 {
+  font-size: $fs-24;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-28;
+  }
+}
+
+h4, .h4 {
+  font-size: $fs-20;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-24;
+  }
+}
+
+h5, .h5 {
+  font-size: $fs-18;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-20;
+  }
+}
+
+h6, .h6 {
+  font-size: $fs-16;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-18;
+  }
+}
+
+p {
+  line-height: $lh-b-lg;
+  margin-bottom: 8px;
+}
+
+// Text Classes
+.lead {
+  font-size: $fs-24;
+  line-height: $lh-b-sm;
+}
+
+.overline {
+  color: $primary-color;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.display-1 {
+  font-size: $fs-40;
+  line-height: $lh-h-sm;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-72;
+  }
+}
+
+.display-2 {
+  font-size: $fs-40;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-56;
+  }
+}
+
+.display-3 {
+  font-size: $fs-34;
+  line-height: $lh-h-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-48;
+  }
+}
+
+.body-xxl {
+  font-size: $fs-18;
+  line-height: $lh-b-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-24;
+    line-height: $lh-b-sm;
+  }
+}
+
+.body-xl {
+  font-size: $fs-18;
+  line-height: $lh-b-lg;
+  @include media-breakpoint-up(md) {
+    font-size: $fs-20;
+    line-height: $lh-b-sm;
+  }
+}
+
+.body-l {
+  font-size: $fs-18;
+  line-height: $lh-b-lg;
+}
+
+.body-m {
+  font-size: $fs-16;
+  line-height: $lh-b-lg;
+}
+
+.body-s {
+  font-size: $fs-14;
+  line-height: $lh-b-lg;
+}
+
+.body-xs {
+  font-size: $fs-12;
+  line-height: $lh-b-lg;
+}
+
+// Labels
+.label,
+label {
+  font-size: $fs-18;
+  line-height: $lh-b-lg;
+  font-weight: 600;
+
+  &.text-1 {
+    font-weight: 800;
+  }
+
+  &.text-2,
+  &.text-3 {
+    font-weight: 600;
+    font-size: $fs-16;
+    line-height: $lh-b-lg;
+  }
+
+  &.text-4,
+  &.text-5,
+  &.text-6 {
+    font-weight: 700;
+    font-size: $fs-12;
+    line-height: $lh-b-lg;
+  }
+}
+
+// Disclaimer
+.disclaimer-md {
+  font-weight: 600;
+  font-size: $fs-12;
+  line-height: $lh-b-sm;
+}
+.disclaimer-sm {
+  font-size: $fs-11;
+  line-height: $lh-b-lg;
+}
+
+// Text Links
+.text-link {
+  font-size: $fs-18;
+  line-height: $lh-b-sm;
+  font-weight: 700;
+  cursor: pointer;
+  color: $primary-color;
+  transition: all 200ms;
+
+  &:hover {
+    color: $blue-500;
+    text-decoration: underline;
+  }
+}
+
+// Read More
+.read-more-link {
+  cursor: pointer;
+  span.read-more-toggle {
+    margin-left: 10px;
+    margin-top: -2px;
+    height: 14px;
+    width: 14px;
+    &::before,&::after {
+      display: block;
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 2px;
+      background: currentColor;
+      margin-top: 7px;
+      transition: transform 200ms;
+    }
+    &::before {
+      transform: rotate(90deg);
+    }
+  }
+  &.show-less {
+    span.read-more-toggle::before {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.current-color {
+  color: currentColor;
+}
+
+blockquote, .blockquote {
+  font-size: $fs-24;
+  line-height: $lh-h-lg;
+}

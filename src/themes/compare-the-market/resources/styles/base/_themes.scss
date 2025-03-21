@@ -1,0 +1,48 @@
+.theme {
+
+  &-white {
+    background: $white;
+  }
+  &-light {
+    background: $light-bg;
+  }
+  &-dark {
+    background: $dark-bg;
+    color: $white;
+  }
+  &-cream-white {
+    background-color: $alabaster-200;
+  }
+  &-light-blue {
+    background-color: $blue-200;
+  }
+  &-blue {
+    background-color: $blue-400;
+    color: $white;
+  }
+  &-dark-blue {
+    background-color: $blue-500;
+    color: $white;
+  }
+  &-brand-gradient-1 {
+    background: linear-gradient(180deg, $blue-500 0%, $blue-400 100%);
+    color: $white;
+  }
+  &-transparent {
+    background: transparent;
+  }
+
+  &-subtle-yellow {
+    background: $light-bg;
+  }
+  &-subtle-red {
+    background: $crimson-100;
+  }
+
+}
+
+[class*='theme-'] {
+  h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6 {
+    color: currentColor;
+  }
+}

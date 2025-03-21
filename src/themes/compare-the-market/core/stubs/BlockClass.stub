@@ -1,0 +1,20 @@
+<?php
+
+namespace Atlas\Blocks;
+
+use Atlas\Core\Blocks\BaseBlock;
+
+class {class_name} extends BaseBlock
+{
+    public $name = '{view_name}';
+
+    public $title = '{block_name}';
+
+    public $description = '{block_name}';
+
+    public function with($block, $fields)
+    {
+        return parent::with($block, $fields); 
+    }
+
+}

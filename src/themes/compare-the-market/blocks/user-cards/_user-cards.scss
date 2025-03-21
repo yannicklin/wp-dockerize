@@ -1,0 +1,21 @@
+section.block-user-cards {
+
+  .user-card {
+    min-height: var(--min-height);
+
+    &-image {
+      width: 48px;
+      height: 48px;
+      @include media-breakpoint-up(xl) {
+        width: 88px;
+        height: 88px;
+      }
+
+      img {
+        width: 100%;
+      }
+
+    }
+  }
+
+}

@@ -1,0 +1,10 @@
+section.banner-card {
+
+  border: 1px solid;
+  border-color: rgba(0,0,0,0.16);
+
+  &.branded {
+    border-color: $blue-300;
+    box-shadow: 8px 8px 0 0 #BCD7F2;
+  }
+}

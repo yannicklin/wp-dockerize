@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd /tmp
+
+environment=${1}
+
+aws s3 cp s3://ctm-enterprise-wordpress-common/backup/sql/wordpress_${environment}.sql dump.sql
+mysql -u ${WORDPRESS_DB_USER} -h ${WORDPRESS_DB_HOST} -p${WORDPRESS_DB_PASSWORD} wordpress < dump.sql
+
+aws s3 sync s3://ctm-enterprise-wordpress-common/backup/${environment}/uploads /var/www/html/static-content/uploads

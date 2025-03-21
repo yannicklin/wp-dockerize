@@ -1,0 +1,54 @@
+.rte {
+
+  img {
+    max-width: 100%;
+    height: auto;
+    @extend .radius-s;
+  }
+
+  // Default WP Styles
+  img.alignright {
+    float: right;
+    margin: 0 0 1em 1em;
+  }
+
+  img.alignleft {
+    float: left;
+    margin: 0 1em 1em 0;
+  }
+
+  img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .alignright {
+    float: right;
+  }
+
+  .alignleft {
+    float: left;
+  }
+
+  .aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  @include media-breakpoint-down(md) {
+    img.alignright,
+    img.alignleft,
+    img.aligncenter {
+      display: flex;
+      margin: 1rem auto 0;
+      float: unset;
+    }
+  }
+
+  ul.list-position-inside {
+    list-style-position: inside;
+  }
+}

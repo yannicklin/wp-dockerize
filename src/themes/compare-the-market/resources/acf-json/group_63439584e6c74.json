@@ -1,0 +1,40 @@
+{
+    "key": "group_63439584e6c74",
+    "title": "Menu - Icons",
+    "fields": [
+        {
+            "key": "field_63439585ff29a",
+            "label": "Icon",
+            "name": "icon",
+            "type": "svg_icon",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_clear": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "nav_menu_item",
+                "operator": "==",
+                "value": "location\/header-top"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1665374004
+}

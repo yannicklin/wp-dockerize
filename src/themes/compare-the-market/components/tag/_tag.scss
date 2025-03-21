@@ -1,0 +1,30 @@
+.component-tag {
+  font-size: 14px;
+  line-height: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+
+
+  &.tag {
+    border-radius: 4px;
+
+    @each $color, $value in $tag-colors {
+      &-#{$color} {
+        color: map-get($value, "color");
+        background: map-get($value, "background");
+        border-color: map-get($value, "border");
+      }
+    }
+
+    @each $size, $value in $tag-sizes {
+      &-#{$size} {
+        font-size: map-get($value, "font-size");
+        line-height: map-get($value, "line-height");
+        padding: map-get($value, "padding");
+      }
+    }
+
+  }
+}

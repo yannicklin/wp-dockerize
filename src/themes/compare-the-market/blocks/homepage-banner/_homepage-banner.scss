@@ -1,0 +1,32 @@
+$colour: var(--colour);
+$opacity: var(--opacity);
+
+
+section.block-homepage-banner {
+
+  .homepage-banner-scroll {
+    background: #001464B8;
+    z-index: 2;
+    transition: all 400ms;
+  }
+
+  .button-group {
+    @include media-breakpoint-down(lg) {
+      order: 1;
+    }
+  }
+
+  .featured-image-container {
+    width: 100%;
+    position: relative;
+    padding-bottom: var(--desktop-ratio);
+
+    @include media-breakpoint-down(lg) {
+      padding-bottom: var(--tablet-ratio, var(--desktop-ratio));
+    }
+    @include media-breakpoint-down(md) {
+      padding-bottom: var(--mobile-ratio, var(--tablet-ratio, var(--desktop-ratio)));
+    }
+  }
+
+}

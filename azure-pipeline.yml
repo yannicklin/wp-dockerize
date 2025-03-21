@@ -1,0 +1,181 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+name: 1.0.$(Build.BuildId)
+
+variables:
+  - group: aws-keys-var-groups
+  - name: "tfe_token"
+    value: $[variables.TF_TOKEN_app_terraform_io]
+  - name: 'terraform-path'
+    value: deploy/terraform/aws
+  - name: 'aws_environment'
+    value: core_ecr
+  - name: 'aws_service_connection'
+    value: unicorn-prod-core-ecr
+  - name: 'aws_ecr_service_connection'
+    value: unicorn-prod-core-ecr
+  - name: 'jobName'
+    value: build_helm_repo
+  - name: "tf_version"
+    value: "v1.3.5"
+  - name: DOCKER_IMAGE_NAME
+    value: "ctm-enterprise-wordpress"
+  
+
+resources:
+  repositories:
+    - repository: self
+      type: git
+      name: self
+
+    - repository: ctm-terraform-template
+      type: git
+      name: CTM/ctm-terraform-template
+      ref: 'refs/heads/terraform-template-eks-v2'
+
+    - repository: ctm-devops-unicorn-example
+      type: git
+      name: CTM/ctm-devops-unicorn-example
+      ref: 'refs/tags/v1.2.1'
+
+pool:
+  name: prd-pool
+
+trigger: none
+
+stages:
+  - stage: Build_Docker
+    condition: "true"
+    jobs:
+      - job:
+        variables:
+          - name: TF_VAR_ECR_REPO_NAME
+            value: $(DOCKER_IMAGE_NAME)
+  
+        steps:
+          - template: template/aws/setup.yml@ctm-terraform-template
+            parameters:
+              aws_env: $(aws_environment)
+              tf_version: "$(tf_version)"
+          - template: template/aws/deploy.yml@ctm-terraform-template
+            parameters:
+              path: "$(terraform-path)/helm-chart-ecr"
+              aws_env: "core_ecr"
+              aws_service_connection: $(aws_ecr_service_connection)
+              jobName: $(jobName)
+              tf_state_name: "$(DOCKER_IMAGE_NAME)_ecr" # This is the directory for the s3 state
+              tfe_token: "$(tfe_token)"
+          - task: Docker@2
+            displayName: Build an image
+            inputs:
+              repository: $(DOCKER_IMAGE_NAME)
+              command: build
+              Dockerfile: ./Dockerfile
+              arguments:
+          - task: Docker@2
+            displayName: Build a tooling image
+            inputs:
+              repository: $(DOCKER_IMAGE_NAME)-tooling
+              command: build
+              Dockerfile: ./Dockerfile.tooling
+              arguments:
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFiles: $(System.DefaultWorkingDirectory)/image-check.xml
+          - task: ECRPushImage@1
+            displayName: Push wordpress image to ECR
+            inputs:
+              awsCredentials: $(aws_ecr_service_connection)
+              regionName: $(TF_VAR_REGION)
+              imageSource: 'imagename'
+              sourceImageName: $(DOCKER_IMAGE_NAME)-tooling
+              sourceImageTag: $(Build.BuildId)
+              pushTag: "1.0.0.$(Build.BuildId)-tooling" # TODO: We should get the actual versions
+              repositoryName: $(DOCKER_IMAGE_NAME)
+              autoCreateRepository: false
+          - task: ECRPushImage@1
+            displayName: Push wordpress tooling image to ECR
+            inputs:
+              awsCredentials: $(aws_ecr_service_connection)
+              regionName: $(TF_VAR_REGION)
+              imageSource: 'imagename'
+              sourceImageName: $(DOCKER_IMAGE_NAME)
+              sourceImageTag: $(Build.BuildId)
+              pushTag: "1.0.0.$(Build.BuildId)" # TODO: We should get the actual versions
+              repositoryName: $(DOCKER_IMAGE_NAME)
+              autoCreateRepository: false
+          - task: SystemsManagerSetParameter@1
+            displayName: "Set Release Version"
+            inputs:
+              awsCredentials: 'unicorn-prod-core-ecr'
+              regionName: 'ap-southeast-2'
+              parameterName: '/ctm/ecr/$(DOCKER_IMAGE_NAME)/ecr/release'
+              parameterType: 'String'
+              parameterValue: "1.0.0.$(Build.BuildId)"
+  - stage: Build_Helm
+    jobs:
+      - job:
+        variables:
+          - name: TF_VAR_ECR_REPO_NAME
+            value: $(DOCKER_IMAGE_NAME)
+          - name: TF_VAR_REGION
+            value: "ap-southeast-2"
+        steps:
+          - checkout: ctm-devops-unicorn-example
+            path: helm
+          - task: AWSShellScript@1
+            displayName: Deploy ${{ variables.runtime }}
+            inputs:
+              awsCredentials: ${{ variables.aws_service_connection }}
+              regionName: 'ap-southeast-2'
+              scriptType: "inline"
+              workingDirectory: "$(System.DefaultWorkingDirectory)"
+              failOnStandardError: true
+              inlineScript: |
+                cp -R charts/generic charts/$(DOCKER_IMAGE_NAME)
+                cp -R charts/jobs charts/$(DOCKER_IMAGE_NAME)/charts/jobs
+                sed -i "s|{{project}}|jobs|" charts/$(DOCKER_IMAGE_NAME)/charts/jobs/Chart.yaml.jinja
+                cat charts/$(DOCKER_IMAGE_NAME)/charts/jobs/Chart.yaml.jinja
+          - template: template/build_helm.yml@ctm-terraform-template
+            parameters:
+              project: '$(DOCKER_IMAGE_NAME)'
+              registry: $(DOCKER_IMAGE_NAME)
+
+          - task: SystemsManagerSetParameter@1
+            displayName: "Set Release Version"
+            inputs:
+              awsCredentials: 'unicorn-prod-core-ecr'
+              regionName: 'ap-southeast-2'
+              parameterName: '/ctm/ecr/$(DOCKER_IMAGE_NAME)/helm/release'
+              parameterType: 'String'
+              parameterValue: "1.0.$(Build.BuildId)"
+
+  - stage: Build_Terraform_vars
+    jobs:
+      - job:
+        steps:
+          - task: AWSShellScript@1
+            inputs:
+              awsCredentials: 'unicorn-prod-core-ecr'
+              regionName: 'ap-southeast-2'
+              scriptType: 'inline'
+              inlineScript: |
+                helm_version="1.0.$(Build.BuildId)"
+                ecr_version="1.0.0.$(Build.BuildId)"
+                # Get the ECR/Helm Version
+                cat <<EOF > ./deploy/terraform/aws/deployment/variables.tfvars
+                AWS_REGION="ap-southeast-2"
+                ECR_REPO_NAME="$(DOCKER_IMAGE_NAME)"
+                HELM_VERSION="${helm_version}"
+                ECR_VERSION="${ecr_version}"
+                VERTICAL="enterprise"
+                CLOUDFLARE_ACCOUNT_ID="a6a06a075e93668d53cc0f10bbcd677d"
+                EOF
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: "./deploy/terraform/aws/deployment"
+              ArtifactName: 'deployment'
+              publishLocation: 'Container'

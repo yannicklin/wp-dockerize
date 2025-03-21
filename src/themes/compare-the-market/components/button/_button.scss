@@ -1,0 +1,189 @@
+.btn {
+  // scss-docs-start btn-css-vars
+  --#{$prefix}btn-padding-x: #{$btn-padding-x};
+  --#{$prefix}btn-padding-y: #{$btn-padding-y};
+  --#{$prefix}btn-font-family: #{$btn-font-family};
+  @include rfs($btn-font-size, --#{$prefix}btn-font-size);
+  --#{$prefix}btn-font-weight: #{$btn-font-weight};
+  --#{$prefix}btn-line-height: #{$btn-line-height};
+  --#{$prefix}btn-color: #{$body-color};
+  --#{$prefix}btn-bg: transparent;
+  --#{$prefix}btn-border-width: #{$btn-border-width};
+  --#{$prefix}btn-border-color: transparent;
+  --#{$prefix}btn-border-radius: #{$btn-border-radius};
+  --#{$prefix}btn-box-shadow: #{$btn-box-shadow};
+  --#{$prefix}btn-disabled-opacity: #{$btn-disabled-opacity};
+  --#{$prefix}btn-focus-box-shadow: 0 0 0 #{$btn-focus-width} rgba(var(--#{$prefix}btn-focus-shadow-rgb), .5);
+  // scss-docs-end btn-css-vars
+
+  display: inline-flex;
+  align-items: center;
+  padding: var(--#{$prefix}btn-padding-y) var(--#{$prefix}btn-padding-x);
+  font-family: var(--#{$prefix}btn-font-family);
+  @include font-size(var(--#{$prefix}btn-font-size));
+  font-weight: var(--#{$prefix}btn-font-weight);
+  line-height: var(--#{$prefix}btn-line-height);
+  color: var(--#{$prefix}btn-color);
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  cursor: if($enable-button-pointers, pointer, null);
+  user-select: none;
+  border: var(--#{$prefix}btn-border-width) solid var(--#{$prefix}btn-border-color);
+  @include border-radius(var(--#{$prefix}btn-border-radius));
+  @include gradient-bg(var(--#{$prefix}btn-bg));
+  @include box-shadow(var(--#{$prefix}btn-box-shadow));
+  @include transition($btn-transition);
+
+  &:hover,
+  &.hover {
+    color: var(--#{$prefix}btn-hover-color);
+    text-decoration: if($link-hover-decoration == underline, none, null);
+    background-color: var(--#{$prefix}btn-hover-bg);
+    border-color: var(--#{$prefix}btn-hover-border-color);
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    color: var(--#{$prefix}btn-hover-color);
+    @include gradient-bg(var(--#{$prefix}btn-hover-bg));
+    border-color: var(--#{$prefix}btn-hover-border-color);
+    outline: 0;
+    // Avoid using mixin so we can pass custom focus shadow properly
+    @if $enable-shadows {
+      box-shadow: var(--#{$prefix}btn-box-shadow), var(--#{$prefix}btn-focus-box-shadow);
+    } @else {
+      box-shadow: var(--#{$prefix}btn-focus-box-shadow);
+    }
+  }
+
+  .btn-check:checked + &,
+  .btn-check:active + &,
+  &:active,
+  &.active,
+  &.show {
+    color: var(--#{$prefix}btn-active-color);
+    background-color: var(--#{$prefix}btn-active-bg);
+    // Remove CSS gradients if they're enabled
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}btn-active-border-color);
+    @include box-shadow(var(--#{$prefix}btn-active-shadow));
+
+    &:focus {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      @if $enable-shadows {
+        box-shadow: var(--#{$prefix}btn-active-shadow), var(--#{$prefix}btn-focus-box-shadow);
+      } @else {
+        box-shadow: var(--#{$prefix}btn-focus-box-shadow);
+      }
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    color: var(--#{$prefix}btn-disabled-color);
+    pointer-events: none;
+    background-color: var(--#{$prefix}btn-disabled-bg);
+    background-image: if($enable-gradients, none, null);
+    border-color: var(--#{$prefix}btn-disabled-border-color);
+    opacity: var(--#{$prefix}btn-disabled-opacity);
+    @include box-shadow(none);
+  }
+
+  &.icon-left .component-icon {
+    margin-right: 8px;
+  }
+
+  &.icon-right .component-icon {
+    margin-left: 8px;
+  }
+
+  &.no-title {
+    --bs-btn-padding-x: var(--bs-btn-padding-y);
+    .component-icon {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  /** fix display flex'd buttons with no icon aligning left **/
+  span {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .component-icon {
+    display: inline-block;
+    font-size: $fs-16;
+  }
+}
+
+
+@each $color, $value in $button-colors {
+  .btn-#{$color} {
+    @include button-variant(
+        map-get($value, "background"),
+        map-get($value, "border"),
+        map-get($value, "color"),
+        map-get($value, "hover-background"),
+        map-get($value, "hover-border"),
+        map-get($value, "hover-color"),
+        map-get($value, "active-background"),
+        map-get($value, "active-border"),
+        map-get($value, "active-color"),
+        map-get($value, "disabled-background"),
+        map-get($value, "disabled-border"),
+        map-get($value, "disabled-color")
+    );
+
+    @if($color == 'link') {
+      padding: 0 !important;
+      text-decoration: underline;
+      border: 0;
+      box-shadow: none;
+    }
+
+    @if($color == 'primary') {
+      &:focus {
+       border-color:  map-get($value, "active-border");
+     }
+    }
+    @if($color == 'neutral') {
+      &:focus {
+        border-color:  map-get($value, "active-border");
+      }
+    }
+
+    @if map-get($value, "active-box-shadow") {
+      --bs-btn-focus-shadow-rgb: #{to-rgb(map-get($value, "active-box-shadow"))};
+      --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), 1);
+    } @else {
+      --bs-btn-focus-box-shadow: none;
+    }
+
+
+  }
+}
+
+@each $size, $value in $button-sizes {
+  .btn-#{$size} {
+    // Padding X and Y need 2px taken away from them due to the border on all buttons
+    @include button-size(
+        map-get($value, "padding-y") - 2px,
+        map-get($value, "padding-x") - 2px,
+        map-get($value, "font-size"),
+        map-get($value, "border-radius")
+    );
+
+    $font-weight: map-get($value, "font-weight");
+    $line-height: map-get($value, "line-height");
+
+    --#{$prefix}btn-font-weight: #{$font-weight};
+    --#{$prefix}btn-line-height: #{$line-height};
+  }
+}
+

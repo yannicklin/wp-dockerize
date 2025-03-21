@@ -1,0 +1,42 @@
+section.component-video {
+  position: relative;
+
+  .video-placeholder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 400ms;
+
+    .video-play-icon {
+      z-index: 1;
+      transition: transform 400ms;
+    }
+
+    &:hover {
+     opacity: 0.9;
+
+      .video-play-icon {
+       transform: scale(1.1);
+      }
+
+    }
+
+    .component-image,
+    .component-image > picture{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+
+  &[loaded] .video-placeholder {
+    display: none;
+  }
+
+}

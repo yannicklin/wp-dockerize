@@ -1,0 +1,31 @@
+section.block-breadcrumbs {
+  background: $white;
+}
+
+#breadcrumbs {
+  font-size: $fs-12;
+  font-weight: 500;
+
+  @include media-breakpoint-up(lg) {
+    font-size: $fs-14;
+  }
+
+  span > span {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.breadcrumb_last {
+      color: $greyscale-400;
+
+      .theme-blue &,
+      .theme-dark-blue &,
+      .theme-brand-gradient-1 & {
+        color: $white;
+      }
+    }
+  }
+}

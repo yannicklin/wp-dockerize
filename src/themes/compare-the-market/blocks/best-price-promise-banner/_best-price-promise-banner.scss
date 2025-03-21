@@ -1,0 +1,16 @@
+section.block-best-price-promise-banner {
+
+  .card-banner-image {
+
+    img {
+      max-width: 100%;
+    }
+
+    &.image-size-full {
+      @include media-breakpoint-down(lg){
+        width: 100%
+      }
+    }
+
+  }
+}

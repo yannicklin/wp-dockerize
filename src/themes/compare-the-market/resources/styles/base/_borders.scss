@@ -1,0 +1,39 @@
+$border-radius: (
+  xxs: 4px,
+  xs: 8px,
+  s: 16px,
+  m: 24px,
+  l: 32px,
+  xl: 40px,
+  round: 50%
+);
+
+.radius, .btn.radius {
+  @each $size, $radius in $border-radius {
+    &-#{$size} {
+      border-radius: $radius;
+    }
+  }
+}
+
+@each $breakpoint, $minWidth in $grid-breakpoints {
+  @if $minWidth != 0 {
+    @media (min-width: $minWidth) {
+      @each $size, $radius in $border-radius {
+        .radius-#{$breakpoint}-#{$size} {
+          border-radius: $radius;
+        }
+      }
+    }
+  }
+}
+
+.border-top-radius-0 {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.border-bottom-radius-0 {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}

@@ -1,0 +1,3 @@
+<section class="component component-{view_name}" data-autoload-component="{class_name}">
+ <!-- Create nice things :) -->
+</section>

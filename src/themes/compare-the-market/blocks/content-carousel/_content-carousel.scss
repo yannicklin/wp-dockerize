@@ -1,0 +1,46 @@
+section.block-content-carousel {
+  .swiper-initialized {
+    padding-bottom: 80px;
+  }
+
+  .banner-card.branded {
+    // requires additional margin so that overflow-hidden doesnt hide the shadow
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+
+
+  .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  .swiper-buttons {
+    position: absolute;
+    width: 100px;
+    right: 25px;
+    bottom: 26px;
+    transition: all .2s;
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+      background: $white;
+      transition: all .2s;
+
+      &:after {
+        display: none; // kill off default swiper back/forwards icon
+      }
+
+      svg {
+        width: 16px;
+      }
+
+      &.swiper-button-disabled {
+        opacity: 1;
+        background: $greyscale-100;
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+section.block-cta-banner {
+  &.contained {
+    background: $alabaster-200 !important;
+  }
+
+  picture.media.position-absolute > img {
+    max-width: unset;
+    min-height: 100%;
+  }
+
+  .primary-title{
+    font-size: var(--title-font-size-mobile);
+    line-height: $lh-h-lg;
+    @include media-breakpoint-up(lg){
+        font-size: var(--title-font-size);
+    }
+  }
+  .subtitle {
+    font-size: var(--subtitle-font-size-mobile);
+    line-height: $lh-h-lg;
+    @include media-breakpoint-up(lg){
+        font-size: var(--subtitle-font-size);
+    }
+  }
+
+
+  // Margins
+  margin-top: var(--mt);
+  margin-bottom: var(--mb);
+  @include media-breakpoint-up(lg){
+    margin-top: var(--mt-lg);
+    margin-bottom: var(--mb-lg);
+  }
+
+}

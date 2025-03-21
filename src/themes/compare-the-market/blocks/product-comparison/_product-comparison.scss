@@ -1,0 +1,78 @@
+section.block-product-comparison {
+  .tab-border {
+    border: 1.5px solid rgba(0, 0, 0, 0.16);
+  }
+
+  h2 {
+    margin-bottom: 8px !important;
+  }
+
+  .nav-item a:hover {
+      background-color: $blue-200!important;
+  }
+
+  .nav-link.active:hover {
+    background-color: $blue-300 !important;
+  }
+
+  .opacity:hover {
+    opacity: 0.8;
+  }
+
+  .mb-neg-16 {
+    margin-bottom: -16px;
+  }
+
+  .listitems ul {
+    padding-left: 0px !important;
+  }
+
+  .tab-border a{
+    color: $greyscale-400;
+  }
+
+  .component-image {
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    max-height: 204px;
+      @media screen and (max-width: 768px) {
+        max-height: 168px;
+      }
+  }
+
+  .component-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .section-heading {
+    max-width: 856px;
+    margin: auto;
+  }
+
+  .card-item {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+    border: 1.5px solid rgba(0, 0, 0, 0.16) !important;
+  }
+
+  .badge-top-pick {
+    top: -48px;
+    right: -28px;
+    width: 105px;
+    z-index: 10;
+  }
+
+  .tab-border {
+    overflow-x: auto !important;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .tab-content {
+      padding-right: 0px !important;
+    }
+  }
+
+}

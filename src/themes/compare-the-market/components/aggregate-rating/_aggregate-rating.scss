@@ -1,0 +1,20 @@
+.component-aggregate-rating {
+
+  .star-rating {
+
+    &-base {
+      color: #C39600
+    }
+    &-overlay {
+      color: #F5D155;
+      width: calc((var(--rating) / 5) * 100%);
+    }
+
+    svg {
+      padding: 3px;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+}

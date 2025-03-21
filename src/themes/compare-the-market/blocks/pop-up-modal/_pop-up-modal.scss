@@ -1,0 +1,20 @@
+section.block-pop-up-modal {
+    .modal.show {
+    display: flex;
+    overflow: auto;
+    }
+    body.modal-open {
+        overflow: hidden;
+    }
+    .modal .popupmodal {
+        overflow-y: auto;
+    }
+
+    .close-modal {
+        color: var(--content-primary);
+        font-family: "Font Awesome 6 Pro";
+        font-size: 32px;
+        border: none;
+        background: none;
+    }
+}

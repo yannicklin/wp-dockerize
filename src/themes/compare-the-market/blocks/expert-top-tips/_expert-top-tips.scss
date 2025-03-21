@@ -1,0 +1,13 @@
+section.block-expert-top-tips {
+
+  .expert-section {
+
+    &:last-child {
+      border-bottom: 0 !important;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

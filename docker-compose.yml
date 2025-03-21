@@ -1,0 +1,73 @@
+services:
+    wordpress:
+        container_name: "wordpress"
+        build:
+            context: .
+            args:
+                BUILDENV: ${docker_env}
+        restart: always
+        ports:
+            - 8080:8080
+        environment:
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_USER: wordpress
+            WORDPRESS_DB_PASSWORD: password
+            WORDPRESS_DB_NAME: wordpress
+            # CONCATENATE_SCRIPTS: true
+            # COMPRESS_SCRIPTS: true
+            # COMPRESS_CSS: true
+            WP_ENVIRONMENT_TYPE: "local"
+            WORDPRESS_DEBUG: true
+            WORDPRESS_DEBUG_LOG: true
+            # WORDPRESS_SCRIPT_DEBUG: true
+            WORDPRESS_CONFIG_EXTRA: "define('WP_AUTO_UPDATE_CORE', false);define('AUTOMATIC_UPDATER_DISABLED', true);"
+            NEW_RELIC_LICENSE_KEY: "CHANGE-ME"
+            NEW_RELIC_APP_NAME: "Wordpress Local Dev"
+            BUCKET_NAME: "ctm-super-special-bucket"
+        volumes:
+            - ${PWD}/src/themes/compare-the-market/blocks:/var/www/html/static-content/themes/compare-the-market/blocks
+            - ${PWD}/src/themes/compare-the-market/components:/var/www/html/static-content/themes/compare-the-market/components
+            - ${PWD}/src/themes/compare-the-market/post-types:/var/www/html/static-content/themes/compare-the-market/post-types
+            - ${PWD}/src/themes/compare-the-market/resources:/var/www/html/static-content/themes/compare-the-market/resources
+            - ${PWD}/src/themes/compare-the-market/taxonomies:/var/www/html/static-content/themes/compare-the-market/taxonomies
+            - wordpress:/var/www/html/static-content/uploads
+        networks:
+            - backend
+        # post_start:
+        # - command: /root/build/post_process.sh
+        #   privileged: true
+
+    db:
+        container_name: "wordpress-mariadb"
+        image: mariadb:10.5
+        # depends_on:
+        #     - wordpress
+        restart: always
+        # platform: linux/amd64
+        ports:
+            - 3306:3306
+        networks:
+            - backend
+        environment:
+            MYSQL_ROOT_PASSWORD: "password"
+            MYSQL_DATABASE: "wordpress"
+            MYSQL_USER: "wordpress"
+            MYSQL_PASSWORD: "password"
+        volumes:
+            - db:/var/lib/mysql
+            # - ./src/sql/:/docker-entrypoint-initdb.d/:ro
+            - ./.local/sql/:/docker-entrypoint-initdb.d/:ro
+
+volumes:
+    wordpress:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: ${PWD}/.local/uploads
+    db:
+
+networks:
+    backend:
+        # Specify driver options
+        driver: bridge

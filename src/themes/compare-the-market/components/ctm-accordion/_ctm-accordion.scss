@@ -1,0 +1,34 @@
+section.component-ctm-accordion {
+  .ctm-accordion-content {
+    transition: max-height 0.3s ease-in-out;
+    &.collapsed {
+      max-height: 0px;
+    }
+  }
+
+
+  button {
+    position: relative;
+    &:before {
+      height: 30px;
+      width: 100%;
+      content: " ";
+      position: absolute;
+      display: block;
+      top: -30px;
+      left: 0;
+      background: linear-gradient(360deg, white, transparent);
+    }
+
+    &.collapsed {
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+
+    svg {
+      transition: all .3s ease-in-out;
+      transform: rotate(180deg);
+    }
+  }
+}

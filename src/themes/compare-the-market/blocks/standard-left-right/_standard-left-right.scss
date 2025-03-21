@@ -1,0 +1,37 @@
+section.block-standard-left-right {
+
+  dotlottie-player {
+    position: relative;
+    width: var(--mobile-width, calc(100% - 40px));
+    margin-top: -100px;
+
+    @include media-breakpoint-up(md) {
+      width: var(--tablet-width, calc(100% - 40px));
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      width: var(--desktop-width, 260px);
+      left: -90px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      left: -112px;
+      width: var(--desktop-large-width, 320px);
+    }
+
+  }
+
+  .flex-md-row-reverse {
+    dotlottie-player {
+      @include media-breakpoint-up(lg) {
+        left: auto;
+        right: -80px; // 1/12 columns + gutter for breakpoint
+      }
+      @include media-breakpoint-up(xl) {
+        left: auto;
+        right: -112px; // 1/12 columns + gutter for breakpoint
+      }
+    }
+  }
+}
